@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Vector from '../../assets/Vector.png'
+import BackgroundDesign from '../../assets/BackgroundDesign.png'
 import loginvactor from '../../assets/loginvactor.png'
 import Vector from '../../assets/Vector.png'
 
@@ -72,7 +72,7 @@ function Login() {
                 </label>
                 <a href="#" className="text-green-700 hover:underline">
                   Forget Password?
-                </Link>
+                </a>
               </div>
 
               {/* Button */}
