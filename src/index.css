@@ -66,4 +66,35 @@ button:focus-visible {
     background-color: #f9f9f9;
   } */
 /* } */
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --primary: #646cff;
+    --primary-hover: #535bf2;
+    --background: #ffffff;
+    --foreground: #213547;
+  }
+
+  .dark {
+    --primary: #646cff;
+    --primary-hover: #535bf2;
+    --background: #242424;
+    --foreground: rgba(255, 255, 255, 0.87);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-hover;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}

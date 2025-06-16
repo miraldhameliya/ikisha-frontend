@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Vector from '../../assets/Vector.png'
 import loginvactor from '../../assets/loginvactor.png'
 import BackgroundDesign from '../../assets/BackgroundDesign.png'
@@ -37,7 +38,7 @@ function Login() {
         <img src={BackgroundDesign} alt="Background Design" className="object-cover w-screen h-screen opacity-100 flex items-center justify-center" />
         <div className="absolute min-h-screen flex items-center justify-center mr-[45rem]">
           <div className="w-96 bg-white p-6 rounded-lg shadow-2xl">
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back!</h1>
+            <h1 className="text-3xl font-bold text-center text-[#334155] mb-6">Welcome Back!</h1>
 
             <form onSubmit={handleSubmit}>
               {/* Username */}
@@ -90,15 +91,15 @@ function Login() {
                   />
                   Remember me
                 </label>
-                <a href="#" className="text-green-700 hover:underline">
+                <Link to="/forgot-password" className="text-[#303F26] hover:underline">
                   Forget Password?
-                </a>
+                </Link>
               </div>
 
               {/* Button */}
               <button
                 type="submit"
-                className="w-full bg-green-800 text-white py-2 rounded-md hover:bg-green-900 transition duration-200 font-semibold"
+                className="w-full bg-[#303F26] text-white py-2 rounded-md hover:bg-[#303F26] transition duration-200 font-semibold"
               >
                 Log In
               </button>

@@ -1,16 +1,60 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import './index.css'
-import Login from './pages/auth/Login'
+// import { BrowserRouter, Route, Routes } from 'react-router-dom'
+// import './App.css'
+// import './index.css'
+// import Login from './pages/auth/Login'
+// import ForgotPassword from './pages/auth/ForgotPassword'
+// import Reset from './pages/auth/Reset'
+// import Header from './components/dashboard/Header'
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/forgotPassword" element={<ForgotPassword />} />
+//         <Route path="/resetPassword" element={<Reset />} />
+
+//         <Route path="/dashboard" element={<Header/>} />
+
+//         {/* Redirect root to login */}
+//         {/* <Route path="/" element={<Navigate to="/login" replace />} />
+        
+//         {/* Catch all route - redirect to login */}
+//         {/* <Route path="*" element={<Navigate to="/login" replace />} /> */} */}
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// }
+
+// export default App
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import DefaultLayout from './components/layout/DefaultLayout';
+import Login from './pages/auth/Login';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import Reset from './pages/auth/Reset';
+// import ProtectedRoute from './Component/ProtectedRoute';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-      </Routes>
-    </BrowserRouter>
-  )
+    <div>
+      <BrowserRouter>
+       
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<Reset />} />
+
+          {/* Main Layout Route */}
+          <Route path="/" element={<DefaultLayout />} />
+
+          {/* Catch all route - redirect to login */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;
