@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import BackgroundDesign from '../../assets/BackgroundDesign.png';
+// import BackgroundDesign from '../../assets/BackgroundDesign.png';
 import rounded from '../../assets/rounded.png';
 import Vector from '../../assets/Vector.png';
 import forgotImage from '../../assets/forgotImage.png';
+import BackgroundDesign from '../../assets/BackgroundDesign.png';
 
 function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -53,23 +54,23 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-white">
-      {/* Background Image */}
-      <img
-        src={BackgroundDesign}
-        alt="Background Design"
-        className="absolute w-full h-full object-cover opacity-100"
-      />
-
-      {/* Main Content */}
-      <div className="relative z-10 flex w-full h-full px-[7.5rem]">
-        {/* Left Section - Form */}
-        <div className="flex items-center justify-center">
-          <div className="w-96 bg-white p-8 rounded-lg shadow-2xl">
-            <h1 className="text-3xl font-bold text-center text-[#334155] mb-6">Forget Password</h1>
+    <div
+      className="bg-no-repeat flex items-center justify-center"
+      style={{
+        backgroundImage: `url(${BackgroundDesign})`
+      }}
+    >
+      <div className="flex w-full h-screen 2xl:mx-32 mx-20 gap-10">
+        {/* Left: Forgot Password Form */}
+        <div className="md:w-1/2 w-full flex items-center justify-start xl:mx-20">
+          <div className="bg-white p-10 rounded-2xl shadow-2xl lg:w-[26rem] w-96">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
+              Forgot Password
+            </h1>
             <form onSubmit={handleSubmit}>
+              {/* Email Input */}
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-3">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
                 <input
@@ -79,16 +80,18 @@ function ForgotPassword() {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="Enter your email"
-                  className={`w-full px-3 py-2 border ${error ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-green-600`}
                   required
+                  className={`w-full px-3 py-2 border ${error ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-green-600`}
                 />
                 {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
                 {success && <p className="mt-2 text-sm text-green-500">{success}</p>}
               </div>
+
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full mt-8 bg-[#303F26] text-white py-2 rounded-md hover:bg-[#1f291d] transition duration-200 font-semibold ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full bg-green-800 text-white py-2 rounded-md hover:bg-green-900 transition duration-200 font-semibold ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {isLoading ? 'Sending...' : 'Get Verification Code'}
               </button>
@@ -96,12 +99,23 @@ function ForgotPassword() {
           </div>
         </div>
 
-        {/* Right Section - Design */}
-        <div className='hidden md:flex items-center justify-center absolute ml-[55rem] h-[55rem] min-h-screen w-[32rem] '>
-          <img src={rounded} alt="Rounded Design" className="absolute top-18 h-[55rem] opacity-[40px]" />
-          <div className='relative flex flex-col items-center justify-center h-[55rem] w-[30rem]'>
-            <img src={Vector} alt="Vector Design" className="absolute top-40 w-78 h-auto" />
-            <img src={forgotImage} alt="Login Vector" className="absolute h-auto z-10 mt-96" />
+        {/* Right Section */}
+        <div className="hidden md:flex w-[500px] bg-[#eef1eb] rounded-t-[300px] flex-col items-center lg:mt-16 md:mt-14 relative overflow-hidden 2xl:ml-28">
+          {/* Logo */}
+          <div className='md:mt-20 lg:mt-28 flex items-center justify-center'>
+            <img
+              src={Vector}
+              alt="Logo"
+              className="lg:w-96 md:mb-10 h-auto"
+            />
+          </div>
+          {/* Centered Forgot Password Illustration */}
+          <div className="flex items-center justify-center">
+            <img
+              src={forgotImage}
+              alt="Forgot Password Illustration"
+              className="h-auto w-auto object-contain"
+            />
           </div>
         </div>
       </div>

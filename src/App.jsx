@@ -33,6 +33,7 @@ import DefaultLayout from './components/layout/DefaultLayout';
 import Login from './pages/auth/Login';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import Reset from './pages/auth/Reset';
+import Category from './pages/dashboard/Category';
 // import ProtectedRoute from './Component/ProtectedRoute';
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
 
           {/* Main Layout Route */}
           <Route path="/" element={<DefaultLayout />} />
+
+          {/* New Route */}
+          <Route path="/category" element={<Category />} />
 
           {/* Catch all route - redirect to login */}
           <Route path="*" element={<Navigate to="/login" replace />} />

@@ -51,13 +51,19 @@ function Reset() {
     };
 
     return (
-        <div className='flex items-center justify-center bg-white'>
-            <div className='flex items-center justify-center bg-white relative'>
-                <img src={BackgroundDesign} alt="Background Design" className="object-cover w-screen h-screen opacity-100 flex items-center justify-center" />
-
-                <div className="absolute min-h-screen flex items-center justify-center mr-[45rem]">
-                    <div className="w-96 bg-white p-6 rounded-lg shadow-2xl">
-                        <h1 className="text-3xl font-bold text-center text-[#334155] mb-6">Reset password</h1>
+        <div
+            className="bg-no-repeat flex items-center justify-center"
+            style={{
+                backgroundImage: `url(${BackgroundDesign})`
+            }}
+        >
+            <div className="flex w-full h-screen 2xl:mx-32 mx-20 gap-10">
+                {/* Left: Reset Password Form */}
+                <div className="md:w-1/2 w-full flex items-center justify-start xl:mx-20">
+                    <div className="bg-white p-10 rounded-2xl shadow-2xl lg:w-[26rem] w-96">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
+                            Reset Password
+                        </h1>
                         {error && (
                             <div className="mb-4 p-2 text-sm text-red-600 bg-red-100 rounded-md">
                                 {error}
@@ -98,22 +104,35 @@ function Reset() {
                                 />
                             </div>
 
+                            {/* Submit Button */}
                             <button
                                 type="submit"
-                                className="w-full mt-8 bg-[#303F26] text-white py-2 rounded-md hover:bg-[#1f291d] transition duration-200 font-semibold"
+                                className="w-full bg-green-800 text-white py-2 rounded-md hover:bg-green-900 transition duration-200 font-semibold"
                             >
                                 Reset Password
                             </button>
                         </form>
                     </div>
                 </div>
-            </div>
-            {/* Right Section */}
-            <div className='hidden md:flex items-center justify-center absolute ml-[55rem] h-[55rem] min-h-screen w-[32rem] '>
-                <img src={rounded} alt="Rounded Design" className="absolute top-18 h-[55rem] opacity-[40px]" />
-                <div className='relative flex flex-col items-center justify-center h-[55rem] w-[30rem]'>
-                    <img src={Vector} alt="Vector Design" className="absolute top-40 w-78 h-auto" />
-                    <img src={reset} alt="Login Vector" className="absolute h-auto z-10 mt-96" />
+
+                {/* Right Section */}
+                <div className="hidden md:flex w-[500px] bg-[#eef1eb] rounded-t-[300px] flex-col items-center lg:mt-16 md:mt-14 relative overflow-hidden 2xl:ml-28">
+                    {/* Logo */}
+                    <div className='md:mt-20 lg:mt-28 flex items-center justify-center'>
+                        <img
+                            src={Vector}
+                            alt="Logo"
+                            className="lg:w-96 md:mb-10 h-auto"
+                        />
+                    </div>
+                    {/* Centered Reset Password Illustration */}
+                    <div className="flex items-center justify-center">
+                        <img
+                            src={reset}
+                            alt="Reset Password Illustration"
+                            className="h-auto w-auto object-contain"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
