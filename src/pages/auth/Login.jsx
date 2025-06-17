@@ -123,6 +123,7 @@ import loginvactor from '../../assets/loginvactor.png';
 import BackgroundDesign from '../../assets/BackgroundDesign.png';
 import rounded from '../../assets/Rounded.png';
 import Vector from '../../assets/Vector.png';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -147,7 +148,7 @@ function Login() {
     >
       <div className="flex w-full h-screen 2xl:mx-32 mx-20 gap-10">
         {/* Left: Login Form */}
-        <div className="md:w-1/2 w-full flex items-center justify-start xl:mx-20">
+        <div className="lg:w-1/2 w-full flex items-center justify-center lg:justify-start xl:mx-20">
           <div className="bg-white p-10 rounded-2xl shadow-2xl lg:w-[26rem] w-96">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
               Welcome Back!
@@ -155,7 +156,7 @@ function Login() {
             <form onSubmit={handleSubmit}>
               {/* Username */}
               <div className="mb-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1.5">
                   Username
                 </label>
                 <input
@@ -172,7 +173,7 @@ function Login() {
 
               {/* Password */}
               <div className="mb-4">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
                   Password
                 </label>
                 <div className="relative">
@@ -201,9 +202,10 @@ function Login() {
                   />
                   Remember me
                 </label>
-                <a href="#" className="text-green-700 hover:underline font-semibold">
+                <Link to="/forgot-password" className="text-green-700 hover:underline font-semibold">
                   Forgot Password?
-                </a>
+                </Link>
+
               </div>
 
               {/* Submit Button */}
@@ -218,7 +220,10 @@ function Login() {
         </div>
 
         {/* Right Section */}
-        <div className="hidden md:flex w-[500px] bg-[#eef1eb] rounded-t-[300px] flex-col items-center lg:mt-16 md:mt-14 relative overflow-hidden 2xl:ml-28">
+        <div className="flex w-[500px] bg-[#eef1eb] rounded-t-[300px] flex-col items-center lg:mt-16 md:mt-14 relative overflow-hidden 2xl:ml-28
+  md:hidden
+  sm:flex
+  lg:flex">
           {/* Logo */}
           <div className='md:mt-20 lg:mt-28 flex items-center justify-center'>
             <img
@@ -232,7 +237,7 @@ function Login() {
             <img
               src={loginvactor}
               alt="Login Illustration"
-              className="h-auto w-auto object-contain"
+              className="h-auto w-96 mt-20 object-contain"
             />
           </div>
         </div>

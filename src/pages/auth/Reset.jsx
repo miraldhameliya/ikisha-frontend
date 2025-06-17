@@ -42,7 +42,7 @@ function Reset() {
             // Here you would typically make an API call to reset the password
             // For example:
             // await resetPassword(formData.newPassword);
-            
+
             // After successful password reset
             navigate('/login'); // Redirect to login page
         } catch (err) {
@@ -59,7 +59,7 @@ function Reset() {
         >
             <div className="flex w-full h-screen 2xl:mx-32 mx-20 gap-10">
                 {/* Left: Reset Password Form */}
-                <div className="md:w-1/2 w-full flex items-center justify-start xl:mx-20">
+                <div className="lg:w-1/2 w-full flex items-center justify-center lg:justify-start xl:mx-20">
                     <div className="bg-white p-10 rounded-2xl shadow-2xl lg:w-[26rem] w-96">
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
                             Reset Password
@@ -72,7 +72,7 @@ function Reset() {
                         <form onSubmit={handleSubmit}>
                             {/* New Password */}
                             <div className="mb-4">
-                                <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                                <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-1.5">
                                     New Password
                                 </label>
                                 <input
@@ -89,7 +89,7 @@ function Reset() {
 
                             {/* Confirm Password */}
                             <div className="mb-4">
-                                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1.5">
                                     Confirm Password
                                 </label>
                                 <input
@@ -116,13 +116,16 @@ function Reset() {
                 </div>
 
                 {/* Right Section */}
-                <div className="hidden md:flex w-[500px] bg-[#eef1eb] rounded-t-[300px] flex-col items-center lg:mt-16 md:mt-14 relative overflow-hidden 2xl:ml-28">
+                <div className="flex w-[500px] bg-[#eef1eb] rounded-t-[300px] flex-col items-center lg:mt-16 md:mt-14 relative overflow-hidden 2xl:ml-28
+  md:hidden
+  sm:flex
+  lg:flex">
                     {/* Logo */}
                     <div className='md:mt-20 lg:mt-28 flex items-center justify-center'>
                         <img
                             src={Vector}
                             alt="Logo"
-                            className="lg:w-96 md:mb-10 h-auto"
+                            className="lg:w-96 md: mb-10 h-auto"
                         />
                     </div>
                     {/* Centered Reset Password Illustration */}
@@ -130,7 +133,7 @@ function Reset() {
                         <img
                             src={reset}
                             alt="Reset Password Illustration"
-                            className="h-auto w-auto object-contain"
+                            className="h-auto w-96 mt-20 object-contain"
                         />
                     </div>
                 </div>

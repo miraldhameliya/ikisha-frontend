@@ -34,6 +34,10 @@ import Login from './pages/auth/Login';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import Reset from './pages/auth/Reset';
 import Category from './pages/dashboard/Category';
+import Diamond from './pages/dashboard/Diamond';
+import DiamondClarity from './pages/dashboard/DiamondClarity';
+import Metal from './pages/dashboard/Metal';
+import Size from './pages/dashboard/Size';
 // import ProtectedRoute from './Component/ProtectedRoute';
 
 function App() {
@@ -52,6 +56,10 @@ function App() {
 
           {/* New Route */}
           <Route path="/category" element={<Category />} />
+          <Route path="/diamond" element={<Diamond />} />
+          <Route path="/diamond-clarity" element={<DiamondClarity />} />
+          <Route path="/metal" element={<Metal />} />
+          <Route path="/size" element={<Size />} />
 
           {/* Catch all route - redirect to login */}
           <Route path="*" element={<Navigate to="/login" replace />} />
