@@ -45,7 +45,8 @@ function Reset() {
 
             // After successful password reset
             navigate('/login'); // Redirect to login page
-        } catch (err) {
+        } catch (e) {
+            console.log(e);
             setError('Failed to reset password. Please try again.');
         }
     };

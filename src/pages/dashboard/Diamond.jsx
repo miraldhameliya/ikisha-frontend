@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+  // import { useAddModal } from "../../components/dashboard/AddModalComponent"; // adjust path
 
 import Table from '../../components/dashboard/Table';
 import edit from '../../assets/icon/edit.png';
+// import { CustomAddModal } from "../../components/dashboard/AddModalComponent";
 
 const initialShapes = [
   { id: 1, name: 'Lab-Grown/Round', active: true },
@@ -12,8 +14,18 @@ const initialShapes = [
   { id: 6, name: 'Lab-Grown/Pear', active: false },
 ];
 
+// const handleAddDiamondShape = (shape) => {
+//   console.log(shape);
+//   // setShapes([...shapes, shape]);
+// };
+
 function Diamond() {
   const [shapes, setShapes] = useState(initialShapes);
+  // const { openModal } = useAddModal();
+
+  // useEffect(() => {
+  //   openModal("Diamond", handleAddDiamondShape);
+  // }, [openModal]);
 
   const toggleStatus = (id) => {
     setShapes(shapes =>
@@ -24,10 +36,11 @@ function Diamond() {
   };
 
   const columns = [
-    { key: 'name', title: 'Diamond Shape' },
+    { key: 'name', title: 'Diamond Shape', align: 'left' },
     {
       key: 'active',
       title: 'Status',
+      align: 'center',
       render: (row) => (
         <label className="relative inline-flex items-center cursor-pointer">
           <input
@@ -36,8 +49,8 @@ function Diamond() {
             onChange={() => toggleStatus(row.id)}
             className="sr-only peer"
           />
-          <div className="w-10 h-6 bg-gray-200 rounded-full peer-checked:bg-green-900 transition-all duration-200"></div>
-          <div className={`absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ${row.active ? 'translate-x-4' : ''}`}></div>
+          <div className="w-8 h-4 bg-gray-200 rounded-full peer-checked:bg-green-900 transition-colors duration-200"></div>
+          <div className={`absolute left-0.5 top-0.5 w-3 h-3 bg-white border border-gray-300 rounded-full shadow-md transform transition-transform duration-200 ${row.active ? 'translate-x-4' : ''}`}></div>
         </label>
       )
 
@@ -45,9 +58,10 @@ function Diamond() {
     {
       key: 'action',
       title: 'Action',
-      render: (row) => (
-        <button className="p-2 rounded hover:bg-gray-100" title="Edit">
-          <img src={edit} alt="Edit" className="w-8 h-8" />
+      align: 'right',
+      render: () => (
+        <button className="p-2" title="Edit">
+          <img src={edit} alt="Edit" className="w-5 h-5" />
         </button>
       ),
     },
@@ -55,9 +69,7 @@ function Diamond() {
 
   return (
     <div className="min-h-screen bg-[#f6f8fa]">
-      <div className="">
-        <Table columns={columns} data={shapes} rowKey="id" />
-      </div>
+      <Table columns={columns} data={shapes} rowKey="id" />
     </div>
   );
 }

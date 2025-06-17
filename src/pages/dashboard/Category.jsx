@@ -41,7 +41,7 @@ function Category() {
   return (
     <div>
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {categories.map((cat, idx) => (
+        {categories.map((cat) => (
           <div key={cat.name} className="bg-white rounded-lg shadow p-3 flex flex-col">
             <div className="relative">
               <img src={cat.image} alt={cat.name} className="rounded-t-lg h-32 w-full object-cover" />

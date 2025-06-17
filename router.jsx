@@ -27,7 +27,7 @@ export const router = [
     },
     {
         path: "/diamond-clarity",
-        name: "DiamondClarity",
+        name: "diamond-clarity",
         element: DiamondClarity
     },
     {

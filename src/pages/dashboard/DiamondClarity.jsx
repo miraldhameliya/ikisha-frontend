@@ -24,29 +24,31 @@ function DiamondClarity() {
   };
 
   const columns = [
-    { key: 'name', title: 'Diamond Clarity Type' },
+    { key: 'name', title: 'Diamond Clarity Type', align: 'left' },
     {
       key: 'active',
       title: 'Status',
+      align: 'center',
       render: (row) => (
-        <label className="inline-flex items-center cursor-pointer">
+        <label className="relative inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
             checked={row.active}
             onChange={() => toggleStatus(row.id)}
             className="sr-only peer"
           />
-          <div className="w-10 h-6 bg-gray-200 rounded-full peer peer-checked:bg-green-900 transition-all duration-200"></div>
-          <div className={`absolute ml-1 mt-1 w-4 h-4 bg-white rounded-full shadow transition-all duration-200 ${row.active ? 'translate-x-4' : ''}`}></div>
+          <div className="w-8 h-4 bg-gray-200 rounded-full peer-checked:bg-green-900 transition-colors duration-200"></div>
+          <div className={`absolute left-0.5 top-0.5 w-3 h-3 bg-white border border-gray-300 rounded-full shadow-md transform transition-transform duration-200 ${row.active ? 'translate-x-4' : ''}`}></div>
         </label>
       ),
     },
     {
       key: 'action',
       title: 'Action',
-      render: (row) => (
-        <button className="p-2 rounded hover:bg-gray-100" title="Edit">
-          <img src={edit} alt="Edit" className="w-8 h-8" />
+      align: 'right',
+      render: () => (
+        <button className="p-2" title="Edit">
+          <img src={edit} alt="Edit" className="w-5 h-5" />
         </button>
       ),
     },
@@ -54,12 +56,7 @@ function DiamondClarity() {
 
   return (
     <div className="min-h-screen bg-[#f6f8fa]">
-      <div className="p-6">
-        {/* <div className="flex justify-end mb-4">
-          <button className="bg-green-900 text-white px-4 py-2 rounded hover:bg-green-800 font-semibold">
-            + Add Diamond Clarity Type
-          </button>
-        </div> */}
+      <div>
         <Table columns={columns} data={clarities} rowKey="id" />
       </div>
     </div>
