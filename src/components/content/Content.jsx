@@ -20,7 +20,7 @@ const Content = () => {
               path={root.path}
               element={<root.element />} />
           ))}
-          <Route path="/" element={<Navigate to="/" replace />} />
+          <Route path="/" element={<Navigate to="*" replace />} />
         </Routes>
       </Suspense>
     </div>

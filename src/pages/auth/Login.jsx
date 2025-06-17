@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import BackgroundDesign from '../../assets/BackgroundDesign.png'
 import loginvactor from '../../assets/loginvactor.png'
 import Vector from '../../assets/Vector.png'
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -70,9 +71,9 @@ function Login() {
                   />
                   Remember me
                 </label>
-                <a href="#" className="text-green-700 hover:underline">
+                <Link to="/forgot-password" className="text-green-700 hover:underline">
                   Forget Password?
-                </a>
+                </Link>
               </div>
 
               {/* Button */}
