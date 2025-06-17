@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../components/dashboard/Header';
 import Table from '../../components/dashboard/Table';
+import edit from '../../assets/icon/edit.png'
 
 const initialSizes = [
   { id: 1, size: '0.2', price: '₹10,000', active: true },
@@ -46,7 +47,7 @@ function Size() {
       title: 'Action',
       render: (row) => (
         <button className="p-2 rounded hover:bg-gray-100" title="Edit">
-          <svg width="20" height="20" fill="none" stroke="currentColor"><circle cx="10" cy="10" r="9" strokeWidth="1.5"/><path d="M7 13l6-6M8 8l4 4" strokeWidth="1.5"/></svg>
+          <img src={edit} alt="Edit" className="w-8 h-8" />
         </button>
       ),
     },
@@ -54,7 +55,6 @@ function Size() {
 
   return (
     <div className="min-h-screen bg-[#f6f8fa]">
-      <Header />
       <div className="p-6">
         <Table columns={columns} data={sizes} rowKey="id" />
       </div>

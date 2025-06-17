@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import BackgroundDesign from '../../assets/BackgroundDesign.png'
-import rounded from '../../assets/Rounded.png'
-import Vector from '../../assets/Vector.png'
-import reset from '../../assets/reset.png'
+import BackgroundDesign from '../../assets/icon/BackgroundDesign.png'
+// import rounded from '../../assets/Rounded.png'
+import Vector from '../../assets/icon/Vector.png'
+import reset from '../../assets/icon/reset.png'
 import { useNavigate } from 'react-router-dom'
 
 function Reset() {

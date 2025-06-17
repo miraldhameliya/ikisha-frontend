@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../assets/image.png'; // Use your actual logo path
-import category from '../../assets/Catagory.png';
-import product from '../../assets/Product.png'
-import diamond from '../../assets/Diamond.png';
-import diamondtype from '../../assets/DiamondType.png';
-import metal from '../../assets/Export.png'
-import size from '../../assets/Size.png';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import logo from '../../assets/icon/image.png'; // Use your actual logo path
+import category from '../../assets/icon/Catagory.png';
+import product from '../../assets/icon/Product.png'
+import diamond from '../../assets/icon/Diamond.png';
+import diamondtype from '../../assets/icon/DiamondType.png';
+import metal from '../../assets/icon/Export.png'
+import size from '../../assets/icon/Size.png';
+import logout from '../../assets/icon/logout.png'; 
 
 const navLinks = [
   { name: 'Category', icon: category, path: '/category' },
@@ -18,6 +19,32 @@ const navLinks = [
 ];
 
 function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Get the current section name from the path
+  const getCurrentSection = () => {
+    const path = location.pathname;
+    const section = navLinks.find(link => link.path === path);
+    
+    // Special cases for sections
+    if (section?.name === 'Metal') {
+      return 'Metal Type';
+    }
+    if (section?.name === 'Diamond Clarity') {
+      return 'Diamond Clarity Type';
+    }
+    if (section?.name === 'Diamond') {
+      return 'Diamond Shape';
+    }
+    
+    return section ? section.name : 'Category'; // Default to Category if no match
+  };
+
+  const handleLogout = () => {
+    navigate('/login');
+  };
+
   return (
     <header className="flex items-center justify-between px-6 py-3 bg-white shadow">
       <div className="flex items-center gap-8">
@@ -37,12 +64,13 @@ function Header() {
       </div>
       <div className="flex items-center gap-4">
         <button className="bg-green-900 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-green-800">
-          Add Category
+          + Add {getCurrentSection()}
         </button>
-        <button className="p-2 rounded hover:bg-gray-100">
-          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
+        <button 
+          onClick={handleLogout}
+          className="p-2 rounded hover:bg-gray-100 transition-colors"
+        >
+          <img src={logout} alt="Logout" className="w-6 h-6" />
         </button>
       </div>
     </header>

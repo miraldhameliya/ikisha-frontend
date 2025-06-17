@@ -1,34 +1,37 @@
-import React from 'react';
-import Header from '../../components/dashboard/Header';
+import Earing from '../../assets/icon/earing.png';
+import Chain from '../../assets/icon/chain.png';
+import Ring from '../../assets/icon/ring.png';
+import bracelet from '../../assets/icon/necklace.png'
+import nosepin from '../../assets/icon/nosepin.png';
 
 const categories = [
   {
     name: 'Earring',
-    image: '/images/earring.jpg', // Replace with your actual image paths
+    image: Earing, // Replace with your actual image paths
     count: 50,
     active: true,
   },
   {
     name: 'Necklace',
-    image: '/images/necklace.jpg',
+    image: Chain,
     count: 50,
     active: true,
   },
   {
     name: 'Ring',
-    image: '/images/ring.jpg',
+    image: Ring,
     count: 50,
     active: true,
   },
   {
     name: 'Bracelet',
-    image: '/images/bracelet.jpg',
+    image: bracelet,
     count: 50,
     active: true,
   },
   {
     name: 'Nose pin',
-    image: '/images/nosepin.jpg',
+    image: nosepin,
     count: 50,
     active: true,
   },
@@ -37,7 +40,6 @@ const categories = [
 function Category() {
   return (
     <div>
-      {/* <Header /> */}
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {categories.map((cat, idx) => (
           <div key={cat.name} className="bg-white rounded-lg shadow p-3 flex flex-col">

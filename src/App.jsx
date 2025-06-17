@@ -38,21 +38,28 @@ import Diamond from './pages/dashboard/Diamond';
 import DiamondClarity from './pages/dashboard/DiamondClarity';
 import Metal from './pages/dashboard/Metal';
 import Size from './pages/dashboard/Size';
-// import ProtectedRoute from './Component/ProtectedRoute';
+import { router } from '../router';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-       
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<Reset />} />
 
-          {/* Main Layout Route */}
-          <Route path="/" element={<DefaultLayout />} />
+          {/* Protected Routes with DefaultLayout */}
+          <Route path="/" element={<DefaultLayout />}>
+            {router.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                element={<route.element />}
+              />
+            ))}
+          </Route>
 
           {/* New Route */}
           <Route path="/category" element={<Category />} />

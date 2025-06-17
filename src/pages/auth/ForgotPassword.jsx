@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 // import BackgroundDesign from '../../assets/BackgroundDesign.png';
-import rounded from "../../assets/rounded.png";
-import Vector from "../../assets/Vector.png";
-import forgotImage from "../../assets/forgotImage.png";
-import BackgroundDesign from "../../assets/BackgroundDesign.png";
+// import rounded from "../../assets/rounded.png";
+import Vector from "../../assets/icon/Vector.png";
+import forgotImage from "../../assets/icon/forgotImage.png";
+import BackgroundDesign from "../../assets/icon/BackgroundDesign.png";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");

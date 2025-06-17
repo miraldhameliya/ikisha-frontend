@@ -119,10 +119,10 @@
 
 
 import React, { useState } from 'react';
-import loginvactor from '../../assets/loginvactor.png';
-import BackgroundDesign from '../../assets/BackgroundDesign.png';
-import rounded from '../../assets/Rounded.png';
-import Vector from '../../assets/Vector.png';
+import loginvactor from '../../assets/icon/loginvactor.png';
+import BackgroundDesign from '../../assets/icon/BackgroundDesign.png';
+// import rounded from '../../assets/Rounded.png';
+import Vector from '../../assets/icon/Vector.png';
 import { Link } from 'react-router-dom';
 
 function Login() {
