@@ -37,7 +37,7 @@ const categories = [
 function Category() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {categories.map((cat, idx) => (
           <div key={cat.name} className="bg-white rounded-lg shadow p-3 flex flex-col">

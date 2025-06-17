@@ -1,13 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/image.png'; // Use your actual logo path
+import category from '../../assets/Catagory.png';
+import product from '../../assets/Product.png'
+import diamond from '../../assets/Diamond.png';
+import diamondtype from '../../assets/DiamondType.png';
+import metal from '../../assets/Export.png'
+import size from '../../assets/Size.png';
 
 const navLinks = [
-  { name: 'Category', path: '/category' },
-  { name: 'Product', path: '/product' },
-  { name: 'Diamond', path: '/diamond' },
-  { name: 'Diamond Clarity', path: '/diamond-clarity' },
-  { name: 'Metal', path: '/metal' },
-  { name: 'Size', path: '/size' },
+  { name: 'Category', icon: category, path: '/category' },
+  { name: 'Product', icon: product, path: '/product' },
+  { name: 'Diamond', icon: diamond, path: '/diamond' },
+  { name: 'Diamond Clarity', icon: diamondtype, path: '/diamond-clarity' },
+  { name: 'Metal', icon: metal, path: '/metal' },
+  { name: 'Size', icon: size , path: '/size' },
 ];
 
 function Header() {
@@ -17,13 +24,14 @@ function Header() {
         <img src={logo} alt="ikisha logo" className="h-10" />
         <nav className="flex gap-6">
           {navLinks.map(link => (
-            <a
+            <Link
               key={link.name}
-              href={link.path}
-              className="font-medium text-gray-700 hover:text-green-800"
+              to={link.path}
+              className="font-medium text-gray-700 hover:text-green-800 flex items-center gap-2"
             >
+              {link.icon && <img src={link.icon} alt={`${link.name} icon`} className="w-5 h-5" />}
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>
@@ -32,7 +40,9 @@ function Header() {
           Add Category
         </button>
         <button className="p-2 rounded hover:bg-gray-100">
-          <svg width="24" height="24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
         </button>
       </div>
     </header>

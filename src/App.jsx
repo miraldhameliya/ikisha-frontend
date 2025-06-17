@@ -56,10 +56,6 @@ function App() {
 
           {/* New Route */}
           <Route path="/category" element={<Category />} />
-          <Route path="/diamond" element={<Diamond />} />
-          <Route path="/diamond-clarity" element={<DiamondClarity />} />
-          <Route path="/metal" element={<Metal />} />
-          <Route path="/size" element={<Size />} />
 
           {/* Catch all route - redirect to login */}
           <Route path="*" element={<Navigate to="/login" replace />} />
