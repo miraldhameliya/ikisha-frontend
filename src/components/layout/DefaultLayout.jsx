@@ -1,18 +1,15 @@
 import React from 'react'
 import Content from '../content/Content'
 import Header from '../dashboard/Header'
-import { AddModalProvider } from '../dashboard/AddModalComponent'
 
 function DefaultLayout() {
   return (
-    <AddModalProvider>
-      <div className="min-h-screen bg-gray-100">
-        <Header />
-        <div className="p-3">
-          <Content />
-        </div>
+    <div className=" flex flex-col bg-gray-100 overflow-hidden">
+      <Header />
+      <div className="flex-1 p-3 overflow-auto">
+        <Content />
       </div>
-    </AddModalProvider>
+    </div>
   )
 }
 

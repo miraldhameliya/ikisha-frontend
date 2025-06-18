@@ -49,14 +49,14 @@ function Metal() {
       align: 'right',
       render: () => (
         <button className="p-2" title="Edit">
-          <img src={edit} alt="Edit" className="w-5 h-5" />
+          <img src={edit} alt="Edit" className="w-8 h-8" />
         </button>
       ),
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#f6f8fa]">
+    <div className=" bg-[#f6f8fa]">
       <div>
 
         <Table columns={columns} data={metals} rowKey="id" />

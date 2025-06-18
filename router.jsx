@@ -11,10 +11,15 @@ const Metal = React.lazy(() => import("./src/pages/dashboard/Metal"))
 const Size = React.lazy(() => import("./src/pages/dashboard/Size"))
 export const router = [
     {
-        path: "/category",
+        path: "/",
         name: "category",
         element: Category
     },
+//    {
+//         path: "/category",
+//         name: "category",
+//         element: Category
+//     }, 
     {
         path: "/product",
         name: "product",

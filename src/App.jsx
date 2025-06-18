@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import DefaultLayout from './components/layout/DefaultLayout';
@@ -13,17 +12,20 @@ import Size from './pages/dashboard/Size';
 import { router } from '../router';
 
 function App() {
+  // You can add your authentication check logic here
+  const isAuthenticated = localStorage.getItem('token'); // or your auth check logic
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<Reset />} />
+          {/* Auth Routes */}
+          <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />} />
+          <Route path="/forgot-password" element={!isAuthenticated ? <ForgotPassword /> : <Navigate to="/" replace />} />
+          <Route path="/reset-password" element={!isAuthenticated ? <Reset /> : <Navigate to="/" replace />} />
 
           {/* Protected Routes with DefaultLayout */}
-          <Route path="/" element={<DefaultLayout />}>
+          <Route element={isAuthenticated ? <DefaultLayout /> : <Navigate to="/login" replace />}>
             {router.map((route, index) => (
               <Route
                 key={index}
@@ -33,7 +35,6 @@ function App() {
             ))}
           </Route>
 
-   
           {/* Catch all route - redirect to login */}
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
