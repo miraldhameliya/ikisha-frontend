@@ -18,6 +18,8 @@ import { router } from '../../../router';
 import CommonModel from '../allModel/CommonModel';
 import Plus from '../../assets/icon/Plus.png';
 
+// import { useAuth } from '../../hooks/useAuth';
+
 const iconMap = {
   category: {
     default: category,
@@ -58,6 +60,7 @@ function Header() {
   const navigate = useNavigate();
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   const getCurrentSection = () => {
     const path = location.pathname;
@@ -82,8 +85,20 @@ function Header() {
     setIsModelOpen(true);
   };
 
-  const handleLogout = () => {
-    navigate('/login');
+  const handleLogout = async () => {
+    setLogoutLoading(true);
+    try {
+      // Call logout API
+     localStorage.removeItem('token');
+      console.log('Logout successful');
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Even if API fails, we should still logout locally
+    } finally {
+
+      navigate('/login');
+      setLogoutLoading(false);
+    }
   };
 
   return (
@@ -118,6 +133,13 @@ function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
+          {/* User Info */}
+          {/* {user && (
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <span>Welcome, {user.username || user.email}</span>
+            </div>
+          )} */}
+          
           <button
             className="bg-[#303F26] text-white px-4 py-2 flex items-center gap-2 hover:bg-[#26371e]"
             onClick={handleAddClick}
@@ -128,7 +150,9 @@ function Header() {
 
           <button
             onClick={handleLogout}
-            className="p-2 transition-colors"
+            disabled={logoutLoading}
+            className={`p-2 transition-colors ${logoutLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 rounded'}`}
+            title="Logout"
           >
             <img src={logout} alt="Logout" className="w-6 h-6" />
           </button>
@@ -137,7 +161,7 @@ function Header() {
       <CommonModel
         open={isModelOpen}
         onClose={() => setIsModelOpen(false)}
-        onSave={(data) => {
+        onSave={() => {
           setIsModelOpen(false);
         }}
         type={currentSection}

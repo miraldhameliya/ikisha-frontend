@@ -9,57 +9,117 @@ const Diamond = React.lazy(() => import("./src/pages/dashboard/Diamond"))
 const DiamondClarity = React.lazy(() => import("./src/pages/dashboard/DiamondClarity"))
 const Metal = React.lazy(() => import("./src/pages/dashboard/Metal"))
 const Size = React.lazy(() => import("./src/pages/dashboard/Size"))
+
+// Import route protection components
+const ProtectedRoute = React.lazy(() => import("./src/components/auth/ProtectedRoute"))
+const PublicRoute = React.lazy(() => import("./src/components/auth/PublicRoute"))
+
+// Wrapper components for route protection
+const ProtectedCategory = () => (
+  <ProtectedRoute>
+    <Category />
+  </ProtectedRoute>
+)
+
+const ProtectedProduct = () => (
+  <ProtectedRoute>
+    <Product />
+  </ProtectedRoute>
+)
+
+const ProtectedDiamond = () => (
+  <ProtectedRoute>
+    <Diamond />
+  </ProtectedRoute>
+)
+
+const ProtectedDiamondClarity = () => (
+  <ProtectedRoute>
+    <DiamondClarity />
+  </ProtectedRoute>
+)
+
+const ProtectedMetal = () => (
+  <ProtectedRoute>
+    <Metal />
+  </ProtectedRoute>
+)
+
+const ProtectedSize = () => (
+  <ProtectedRoute>
+    <Size />
+  </ProtectedRoute>
+)
+
+const PublicLogin = () => (
+  <PublicRoute>
+    <Login />
+  </PublicRoute>
+)
+
+const PublicForgotPassword = () => (
+  <PublicRoute>
+    <ForgotPassword />
+  </PublicRoute>
+)
+
+const PublicReset = () => (
+  <PublicRoute>
+    <Reset />
+  </PublicRoute>
+)
+
 export const router = [
+    // {
+    //     path: "/",
+    //     name: "category",
+    //     element: ProtectedCategory
+    // },
     {
         path: "/",
         name: "category",
-        element: Category
-    },
-//    {
-//         path: "/category",
-//         name: "category",
-//         element: Category
-//     }, 
+        element: ProtectedCategory
+    }, 
     {
         path: "/product",
         name: "product",
-        element: Product
+        element: ProtectedProduct
     },
     {
         path: "/diamond",
         name: "diamond",
-        element: Diamond
+        element: ProtectedDiamond
     },
     {
         path: "/diamond-clarity",
         name: "diamond-clarity",
-        element: DiamondClarity
+        element: ProtectedDiamondClarity
     },
     {
         path: "/metal",
         name: "metal",
-        element: Metal
+        element: ProtectedMetal
     },
    {
         path: "/size",
         name: "size",
-        element: Size
+        element: ProtectedSize
     },
    
    
     {
         path: "/login",
         name: "login",
-        element: Login
+        element: PublicLogin
     },
     {
         path: "/forgot-password",
         name: "forgot-password",
-        element: ForgotPassword
+        element: PublicForgotPassword
     },
     {
         path: "/reset-password",
         name: "reset-password",
-        element: Reset
+        element: PublicReset
     }
 ]

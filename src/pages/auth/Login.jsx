@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import loginvactor from '../../assets/icon/loginvactor.png';
 import BackgroundDesign from '../../assets/icon/BackgroundDesign.png';
@@ -6,28 +5,58 @@ import Rounded from '../../assets/icon/Rounded.png';
 import Vector from '../../assets/icon/Vector.png';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { LoginApi } from '../../api/services/authService';
 
-function Login() {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+function Login({ setIsAuthenticated }) {
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (error) setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login attempt with:', formData, 'Remember me:', rememberMe);
-    navigate('/category');
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await LoginApi(formData);
+      
+      if (response.data.IsSuccess) {
+        // Store only token, not user data
+        localStorage.setItem('token', response.data.Data.token);
+        setIsAuthenticated(true);
+        navigate('/');
+        // Store remember me preference
+        if (rememberMe) {
+          localStorage.setItem('rememberMe', 'true');
+        } else {
+          localStorage.removeItem('rememberMe');
+        }
+      
+      } else {
+        setError(response.data.Message || 'Login failed');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(err.response?.data?.Message || 'An error occurred during login');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div
       className="bg-no-repeat flex items-center justify-center"
       style={{
-        backgroundImage: `url(${BackgroundDesign})` // fixed this line
+        backgroundImage: `url(${BackgroundDesign})`
       }}
     >
       <div className="flex w-full h-screen 2xl:mx-32 mx-20 gap-10">
@@ -37,19 +66,27 @@ function Login() {
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">
               Welcome Back!
             </h1>
+            
+            {/* Error Message */}
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit}>
-              {/* Username */}
+              {/* Email */}
               <div className="mb-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Username
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
+                  Email
                 </label>
                 <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={formData.username}
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your username"
+                  placeholder="Enter your email"
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
                 />
@@ -89,16 +126,19 @@ function Login() {
                 <Link to="/forgot-password" className="text-green-700 hover:underline font-semibold">
                   Forgot Password?
                 </Link>
-
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-green-800 text-white py-2 rounded-md hover:bg-green-900 transition duration-200 font-semibold"
-                onClick={handleSubmit}
+                disabled={loading}
+                className={`w-full py-2 rounded-md transition duration-200 font-semibold ${
+                  loading 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-green-800 hover:bg-green-900'
+                } text-white`}
               >
-                Log In
+                {loading ? 'Logging In...' : 'Log In'}
               </button>
             </form>
           </div>

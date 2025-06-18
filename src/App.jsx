@@ -1,26 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import DefaultLayout from './components/layout/DefaultLayout';
 import Login from './pages/auth/Login';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import Reset from './pages/auth/Reset';
-import Category from './pages/dashboard/Category';
-import Diamond from './pages/dashboard/Diamond';
-import DiamondClarity from './pages/dashboard/DiamondClarity';
-import Metal from './pages/dashboard/Metal';
-import Size from './pages/dashboard/Size';
 import { router } from '../router';
 
 function App() {
-  // You can add your authentication check logic here
-  const isAuthenticated = localStorage.getItem('token'); // or your auth check logic
-
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
+  // const isAuthenticated = true;
   return (
     <div>
       <BrowserRouter>
         <Routes>
           {/* Auth Routes */}
-          <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />} />
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/forgot-password" element={!isAuthenticated ? <ForgotPassword /> : <Navigate to="/" replace />} />
           <Route path="/reset-password" element={!isAuthenticated ? <Reset /> : <Navigate to="/" replace />} />
 
